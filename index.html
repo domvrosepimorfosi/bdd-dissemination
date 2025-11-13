@@ -60,11 +60,18 @@
         .social-media {
             margin-top: 10px;
             margin-bottom: 20px; /* Added space below icons */
+            display: flex; /* Enable flexbox */
+            flex-wrap: wrap; /* Allow wrapping */
+            justify-content: center; /* Center items */
+            align-items: center; /* Align items vertically */
         }
 
-        .social-media a {
-            display: inline-block;
-            margin: 0 10px;
+        .social-media a, .social-media .email-display {
+            display: flex; /* Use flex for icon/text alignment */
+            align-items: center;
+            margin: 5px 10px; /* Adjusted margin for better spacing */
+            text-decoration: none;
+            color: inherit; /* Inherit color for text */
         }
 
         .social-media svg {
@@ -73,10 +80,28 @@
             fill: #555; /* Set default icon color */
             transition: fill 0.3s ease;
         }
+        
+        /* Style for the email text */
+        .email-display {
+            font-size: 1em;
+            font-weight: 500;
+            color: #333; /* Darker color for readability */
+        }
 
         .social-media a:hover svg,
         .social-media a:focus svg {
             fill: #0056b3; /* Set icon hover color (matches pill links) */
+        }
+        
+        /* Hover effect for the email link/display */
+        .social-media a[title="Email"]:hover .email-icon svg,
+        .social-media a[title="Email"]:focus .email-icon svg {
+             fill: #0056b3;
+        }
+        
+        .social-media a[title="Email"]:hover .email-display,
+        .social-media a[title="Email"]:focus .email-display {
+             color: #0056b3;
         }
         /* --- END OF SOCIAL MEDIA STYLES --- */
 
@@ -135,6 +160,20 @@
                 width: 28px;
                 height: 28px;
             }
+            .social-media .email-display {
+                font-size: 0.9em;
+            }
+        }
+        
+        /* Adjusted layout for email display on small screens */
+        @media (max-width: 450px) {
+            .social-media a {
+                margin: 5px 5px;
+            }
+            /* Make email link/display wrap if needed */
+            .social-media a[title="Email"] {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -158,7 +197,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.36 14.12V7.88c0-.61.66-1.01 1.2-.69l5.06 3.12c.54.33.54.85 0 1.18l-5.06 3.12c-.54.33-1.2-.08-1.2-.69z"/></svg>
           </a>
           <a href="mailto:pdomvros.training@gmail.com" title="Email">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+            <span class="email-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+            </span>
+            <span class="email-display">pdomvros.training@gmail.com</span>
           </a>
         </div>
         
